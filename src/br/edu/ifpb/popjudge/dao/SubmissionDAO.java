@@ -1,5 +1,6 @@
 package br.edu.ifpb.popjudge.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,13 +82,13 @@ public class SubmissionDAO implements Dao<Submission> {
 		LanguageDAO lDAO = new LanguageDAO();
 
 		while (resultSet.next()) {
-//			list.add(new Submission(resultSet.getInt("id_submission"), uDAO
-//					.get(resultSet.getInt("id_user")), pDAO.get(resultSet
-//					.getInt("id_problem")), lDAO.get(resultSet
-//					.getInt("id_language")), new File(resultSet
-//					.getString("file_name")), resultSet
-//					.getTimestamp("time_submission"), resultSet
-//					.getString("veredict")));
+			list.add(new Submission(resultSet.getInt("id_submission"), uDAO
+					.get(resultSet.getInt("id_user")), pDAO.get(resultSet
+					.getInt("id_problem")), lDAO.get(resultSet
+					.getInt("id_language")), new File(resultSet
+					.getString("file_name")), resultSet
+					.getTimestamp("time_submission"), resultSet
+					.getString("veredict")));
 		}
 
 		resultSet.close();
@@ -97,7 +98,7 @@ public class SubmissionDAO implements Dao<Submission> {
 		return list;
 	}
 
-	public ArrayList<Submission> getMySubmissions() throws SQLException {
+	public ArrayList<Submission> getMySubmissions(int id) throws SQLException {
 		connection = new ConnectionFactory().getConnection();
 
 //		FacesContext context = FacesContext.getCurrentInstance();
@@ -106,7 +107,7 @@ public class SubmissionDAO implements Dao<Submission> {
 //
 //		int id = ((User) session.getAttribute("user")).getIdUser();
 
-		String sql = "SELECT * FROM SUBMISSION WHERE id_user = " + 1
+		String sql = "SELECT * FROM SUBMISSION WHERE id_user = " + id
 				+ " ORDER BY time_submission DESC";
 
 		Statement statement = connection.createStatement();
@@ -119,13 +120,13 @@ public class SubmissionDAO implements Dao<Submission> {
 		LanguageDAO lDAO = new LanguageDAO();
 
 		while (resultSet.next()) {
-//			list.add(new Submission(resultSet.getInt("id_submission"), uDAO
-//					.get(resultSet.getInt("id_user")), pDAO.get(resultSet
-//					.getInt("id_problem")), lDAO.get(resultSet
-//					.getInt("id_language")), new File(resultSet
-//					.getString("file_name")), resultSet
-//					.getTimestamp("time_submission"), resultSet
-//					.getString("veredict")));
+			list.add(new Submission(resultSet.getInt("id_submission"), uDAO
+					.get(resultSet.getInt("id_user")), pDAO.get(resultSet
+					.getInt("id_problem")), lDAO.get(resultSet
+					.getInt("id_language")), new File(resultSet
+					.getString("file_name")), resultSet
+					.getTimestamp("time_submission"), resultSet
+					.getString("veredict")));
 		}
 
 		resultSet.close();

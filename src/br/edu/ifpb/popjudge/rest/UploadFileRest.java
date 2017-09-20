@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response.Status;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
+import br.edu.ifpb.popjudge.model.Teste;
 import br.edu.ifpb.popjudge.util.UtilComand;
 
 @Path("/upload")
@@ -23,11 +24,11 @@ public class UploadFileRest {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response uploadFile(@FormDataParam("file") InputStream in,  @FormDataParam("file") FormDataContentDisposition fdcd) {
+	public Response uploadFile(Teste teste) {
 		try {
 
-			UtilComand.createDirUser("adm");
-			Files.copy(in, new File(PATH_SUBMISOES+"\\adm"+fdcd.getFileName()).toPath());
+//			UtilComand.createDirUser("adm");
+//			Files.copy(in, new File(PATH_SUBMISOES+"\\adm"+fdcd.getFileName()).toPath());
 			return Response.status(Status.OK).build();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
