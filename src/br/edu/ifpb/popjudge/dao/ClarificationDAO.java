@@ -1,5 +1,6 @@
 package br.edu.ifpb.popjudge.dao;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 	
 	@Override
 	public String insert(Clarification value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "INSERT INTO CLARIFICATION(id_clarification, id_user, id_problem, "
 				+ "issue, answer) VALUES(0, ?, ?, ?, ?)";
@@ -36,7 +42,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 
 	@Override
 	public ArrayList<Clarification> getAll() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "SELECT * FROM CLARIFICATION ORDER BY id_problem";
 		
@@ -65,7 +76,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 	}
 	
 	public ArrayList<Clarification> getNotReplied() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "SELECT * FROM CLARIFICATION WHERE answer IS NULL ORDER BY id_problem";
 		
@@ -95,7 +111,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 	
 	@Override
 	public Clarification get(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = String.format("SELECT * FROM CLARIFICATION WHERE id_clarification = %d", id);
 		
@@ -124,7 +145,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 
 	@Override
 	public boolean delete(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = String.format("DELETE FROM CLARIFICATION WHERE id_clarification = %d", id);
 	
@@ -140,7 +166,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 
 	@Override
 	public Clarification update(Clarification value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "UPDATE CLARIFICATION SET id_user = ?, id_problem = ?, "
 				+ "issue = ?, answer = ?, time_clarification = ? WHERE id_clarification = ?";
@@ -163,7 +194,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 
 	@Override
 	public void truncate() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "truncate table CLARIFICATION";
 		
@@ -176,7 +212,12 @@ public class ClarificationDAO implements Dao<Clarification> {
 	}
 
 	public void deleteByProblem(int idProblem) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = String.format("DELETE FROM CLARIFICATION WHERE id_problem = %d", idProblem);
 

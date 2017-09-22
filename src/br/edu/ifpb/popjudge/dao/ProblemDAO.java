@@ -2,6 +2,7 @@ package br.edu.ifpb.popjudge.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,12 @@ public class ProblemDAO implements Dao<Problem> {
 		return "Criado com sucesso";
 	}
 	public int insertGet(Problem value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		String sql = "INSERT INTO PROBLEM(id_problem, title, score_points, "
 				+ "time_limit, dir) VALUES(0, ?, ?, ?, ?)";
@@ -58,7 +64,12 @@ public class ProblemDAO implements Dao<Problem> {
 
 	@Override
 	public ArrayList<Problem> getAll() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "SELECT * FROM PROBLEM";
 
@@ -83,7 +94,12 @@ public class ProblemDAO implements Dao<Problem> {
 
 	@Override
 	public Problem get(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = String.format(
 				"SELECT * FROM PROBLEM WHERE id_problem = %d", id);
@@ -110,7 +126,12 @@ public class ProblemDAO implements Dao<Problem> {
 
 	@Override
 	public boolean delete(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "DELETE FROM PROBLEM WHERE id_problem = ?";		
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -126,7 +147,12 @@ public class ProblemDAO implements Dao<Problem> {
 
 	@Override
 	public Problem update(Problem value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		String sql = "UPDATE PROBLEM SET title = ?, score_points = ?, "
 				+ "time_limit = ?, dir = ? WHERE id_problem = ?";
@@ -159,7 +185,12 @@ public class ProblemDAO implements Dao<Problem> {
 	}
 	@Override
 	public void truncate() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "truncate table PROBLEM";
 		

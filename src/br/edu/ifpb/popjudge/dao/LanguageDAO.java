@@ -2,6 +2,7 @@ package br.edu.ifpb.popjudge.dao;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,12 @@ public class LanguageDAO implements Dao<Language> {
 
 	@Override
 	public String insert(Language value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "INSERT INTO LANGUAGE(id_language, name) values (0, ?)";
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -32,7 +38,12 @@ public class LanguageDAO implements Dao<Language> {
 
 	@Override
 	public ArrayList<Language> getAll() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "select * from LANGUAGE";
 
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -68,7 +79,12 @@ public class LanguageDAO implements Dao<Language> {
 
 	@Override
 	public Language get(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "select * from LANGUAGE where id_language = ?";
 
 		PreparedStatement stmt = connection.prepareStatement(sql);
@@ -109,7 +125,12 @@ public class LanguageDAO implements Dao<Language> {
 
 	@Override
 	public Language update(Language value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String sql = "update LANGUAGE set name = ? where id_language = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, value.getName());

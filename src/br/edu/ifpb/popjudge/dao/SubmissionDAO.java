@@ -1,6 +1,7 @@
 package br.edu.ifpb.popjudge.dao;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	@Override
 	public String insert(Submission value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "INSERT INTO SUBMISSION(id_submission, id_user, id_problem, "
 				+ "id_language, file_name, time_submission, veredict) VALUES(0, ?, ?, ?, ?, ?, ?)";
@@ -39,7 +45,12 @@ public class SubmissionDAO implements Dao<Submission> {
 	}
 
 	public int insertAndGetKey(Submission value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "INSERT INTO SUBMISSION(id_submission, id_user, id_problem, "
 				+ "id_language, file_name, time_submission, veredict) VALUES(0, ?, ?, ?, ?, ?, ?)";
@@ -68,7 +79,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	@Override
 	public ArrayList<Submission> getAll() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "SELECT * FROM SUBMISSION ORDER BY time_submission DESC";
 
@@ -99,7 +115,12 @@ public class SubmissionDAO implements Dao<Submission> {
 	}
 
 	public ArrayList<Submission> getMySubmissions(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //		FacesContext context = FacesContext.getCurrentInstance();
 //		HttpSession session = (HttpSession) context.getExternalContext()
@@ -138,7 +159,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	@Override
 	public Submission get(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = String.format(
 				"SELECT * FROM SUBMISSION WHERE id_submission = %d", id);
@@ -178,7 +204,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	public void deleteByProblem(int idProblem) throws SQLException {
 
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = String.format("DELETE FROM SUBMISSION WHERE id_problem = %d", idProblem);
 
@@ -193,7 +224,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	@Override
 	public Submission update(Submission value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "UPDATE SUBMISSION SET id_user = ?, id_problem = ?, id_language = ?, file_name = ?, "
 				+ "time_submission = ?, veredict = ? WHERE id_submission = ?";
@@ -217,7 +253,12 @@ public class SubmissionDAO implements Dao<Submission> {
 
 	@Override
 	public void truncate() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "truncate table SUBMISSION";
 

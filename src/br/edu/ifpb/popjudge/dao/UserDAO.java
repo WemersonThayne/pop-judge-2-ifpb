@@ -1,5 +1,6 @@
 package br.edu.ifpb.popjudge.dao;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +17,12 @@ public class UserDAO implements Dao<User> {
 	
 	@Override
 	public String insert(User value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "INSERT INTO USER(id_user, username, password, email, "
 				+ "full_name, city, college, dir)"
@@ -42,7 +48,12 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public ArrayList<User> getAll() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "SELECT * FROM USER";
 		
@@ -71,7 +82,12 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public User get(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = String.format("SELECT * FROM USER WHERE id_user = %d", id);
 		
@@ -99,7 +115,12 @@ public class UserDAO implements Dao<User> {
 	}
 	
 	public User get(String username) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = String.format("SELECT * FROM USER WHERE username = '%s'", username);
 		
@@ -128,7 +149,12 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public boolean delete(int id) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = String.format("DELETE FROM USER WHERE id_user = %d", id);
 		
@@ -139,7 +165,12 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public User update(User value) throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String sql = "UPDATE USER SET password = ?, email = ?,"
 				+ "full_name = ?, city = ?, college = ?, dir = ? WHERE id_user = ?";
@@ -163,7 +194,12 @@ public class UserDAO implements Dao<User> {
 
 	@Override
 	public void truncate() throws SQLException {
-		connection = new ConnectionFactory().getConnection();
+		try {
+			connection = new ConnectionFactory().getConnection();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String sql = "delete from USER where username <> 'Admin'";
 			
